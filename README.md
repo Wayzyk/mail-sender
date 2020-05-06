@@ -39,7 +39,7 @@ cp .env.example .env
 1. If you don’t already have a Twilio account, sign up for a free trial. Make sure that the number you pick has SMS capabilities.
 
 ```
-go to https://www.twilio.com/try-twilio
+https://www.twilio.com/try-twilio
 ```
 
 2. After you sign up, Twilio will ask you to verify your personal phone number. With a free trial account, this is the only number you can send texts to, but that’s okay for this app.
@@ -48,20 +48,24 @@ go to https://www.twilio.com/try-twilio
 
 3. Click the house icon on the top left corner of the https://www.twilio.com/console and paste your Account SID and Auth Token in your env file. For getting trial number click on the button "Get trial number" and paste this number to TWILIO_SENDER_PHONE variable in env file.
 
-4. In app/services/sms_sender.rb on 12 line paste your number
-
 # Send sms to your phone
 
 ```
 rails c
 ```
 
-```
-message = 'Your message here'
-```
+Create new user
 
 ```
-SmsSender.new(message).call
+ User.create!(first_name: 'Name', last_name: 'Surname', email: 'test@test.com', phone: 'your phone')
+
+  Notification.create!(message_id: '1', body: 'Hello')
+```
+
+Send sms
+
+```
+SmsSender.new(user_id, message_id).call
 ```
 
 If you can't call SmsSender from console
