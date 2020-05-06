@@ -78,3 +78,21 @@ rails c
 ActiveSupport::Dependencies.autoload_paths - check if the services folder is listed
 
 ```
+
+# Send email
+
+```
+rails c
+```
+
+Create new user
+
+```
+ user = User.create!(first_name: 'Name', last_name: 'Surname', email: 'test@test.com', phone: 'your phone')
+ ```
+
+ Send Email
+
+ ```
+ UserMailer.sample_email(user).deliver
+```
